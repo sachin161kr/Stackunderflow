@@ -5,6 +5,8 @@ import {useState, useEffect} from 'react';
 
 import getData from '../../functions/getData';
 
+import isCloseToBottom from '../../functions/isCloseToBottom';
+
 const NodeHome = () => {
   const title = 'Loading <Stackunderflow/>';
 
@@ -12,13 +14,20 @@ const NodeHome = () => {
 
   const [loading, setLoading] = useState(true);
 
+  const [listEnd, setListEnd] = useState(false);
+
+  const change = () => {
+    setListEnd(!listEnd);
+  };
+
   useEffect(() => {
+    setLoading(true);
     getData({
       category: 'nodejs',
       setData: setData,
       setLoading: setLoading,
     });
-  }, []);
+  }, [listEnd]);
 
   return (
     <>
@@ -27,7 +36,14 @@ const NodeHome = () => {
           <Text>{title}</Text>
         </View>
       ) : (
-        <ScrollView style={{backgroundColor: '#f7ad52'}}>
+        <ScrollView
+        onScroll={({nativeEvent}) => {
+          if (isCloseToBottom(nativeEvent)) {
+            change();
+          }
+        }}
+        scrollEventThrottle={400}
+          style={{backgroundColor: '#f7ad52'}}>
           {data.map(e => {
             return <Question e={e} />;
           })}

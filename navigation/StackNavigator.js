@@ -13,7 +13,8 @@ const ReactNavigator = () => {
         name="ReactHome"
         component={ReactHome}
         options={{
-          headerShown: false,
+          headerShown: true,
+          title : "Hot Questions for React JS !!!"
         }}
       />
     </Stack.Navigator>
@@ -27,7 +28,8 @@ const NativeNavigator = () => {
         name="NativeHome"
         component={NativeHome}
         options={{
-          headerShown: false,
+          headerShown: true,
+          title : "Hot Questions for React Native !!!"
         }}
       />
     </Stack.Navigator>
@@ -41,7 +43,8 @@ const NodeNavigator = () => {
         name="NodeHome"
         component={NodeHome}
         options={{
-          headerShown: false,
+          headerShown: true,
+          title : "Hot Questions for Node JS !!!"
         }}
       />
     </Stack.Navigator>
